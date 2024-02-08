@@ -19,6 +19,7 @@ export default {
     text: String,
     size: String,
     yOffset: String,
+    height: Number
   },
   data() {
     return {
