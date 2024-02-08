@@ -7,10 +7,13 @@
         :color="button.color"
         :text="button.text"
         :size="button.size"
+        :y-offset="button.yOffset"
         @clicked="buttonClicked"
       />
     </div>
   </div>
+
+  
 </template>
 
 
@@ -25,10 +28,10 @@ export default {
   data() {
     return {
       buttons: [
-        { color: '#3498db', text: '📚', size: '350px' },
-        { color: '#e74c3c', text: '🏋️', size: '300px' },
-        { color: '#2ecc71', text: '🧘', size: '350px' },
-        { color: '#ffe852', text: '🥣', size: '335px' }
+        { color: '#3498db', text: '📚', size: '380px', yOffset: '-20px' },
+        { color: '#e74c3c', text: '🏋️', size: '300px', yOffset: '100px' },
+        { color: '#2ecc71', text: '🧘', size: '350px', yOffset: '-30px' },
+        { color: '#ffe852', text: '🥣', size: '335px', yOffset: '50px' }
       ]
     };
   },
@@ -63,22 +66,22 @@ export default {
 .circle-button:first-child {
   margin-left: 0; /* No overlap for the first button */
   z-index: 4; /* Higher z-index for stack order */
-  transform: translateY(-10px); /* Adjust y-axis position */
+  transform: translateY(-20px); /* Adjust y-axis position */
 }
 
 .circle-button:nth-child(2) {
   z-index: 3;
-  transform: translateY(5px); /* Adjust y-axis position */
+  transform: translateY(100px); /* Adjust y-axis position */
 }
 
 .circle-button:nth-child(3) {
   z-index: 2;
-  transform: translateY(-15px); /* Adjust y-axis position */
+  transform: translateY(-30px); /* Adjust y-axis position */
 }
 
 .circle-button:nth-child(4) {
   z-index: 1;
-  transform: translateY(20px); /* Adjust y-axis position */
+  transform: translateY(50px); /* Adjust y-axis position */
 }
 
 /* Add similar rules for more buttons if necessary */
