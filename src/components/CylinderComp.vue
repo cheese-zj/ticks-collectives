@@ -1,7 +1,7 @@
 <template>
     <div class="cylinder-container">
       <div class="cylinder-top" :style="{ backgroundColor: color }"></div>
-      <div class="cylinder-body" :style="{ height: height + 'px', backgroundColor: color }"></div>
+      <div class="cylinder-body" :style="{ height: height+ 'px', backgroundColor: color }"></div>
     </div>
   </template>
   

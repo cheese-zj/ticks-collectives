@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+
+    <div class="quarter-circle"></div>
+
     <div class="button-container">
       <circle-button
         v-for="(button, index) in buttons"
@@ -50,7 +53,7 @@ export default {
   methods: {
     buttonClicked(index) {
       // alert(`Button ${index} clicked!`);
-      this.buttons[index].height += 15;
+      this.buttons[index].height += 20;
     }
   }
 }
@@ -104,6 +107,18 @@ export default {
   margin: 100px; /* Adds space between cylinders */
   width: 80px; /* Or another appropriate width */
   /* Ensure the container's width is enough to include the cylinder and its 3D effect */
+}
+
+.quarter-circle {
+  position: fixed; /* Allows absolute positioning */
+  top: 0; /* Aligns to the top of the container */
+  right: 0; /* Aligns to the right of the container */
+  width: 200px; /* Adjust based on your design */
+  height: 200px; /* Adjust based on your design */
+  background-color: grey; /* Default color, will be overridden by prop */
+  border-radius: 0 0 0 200px; /* Quarter-circle shape */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Adds a subtle shadow */
+  z-index: 5;
 }
 
 /* Add similar rules for more buttons if necessary */
