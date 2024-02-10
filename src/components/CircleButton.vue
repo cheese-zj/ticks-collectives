@@ -19,7 +19,8 @@ export default {
     text: String,
     size: String,
     yOffset: String,
-    height: Number
+    height: Number,
+    coeff: Number
   },
   data() {
     return {
@@ -58,8 +59,8 @@ export default {
 .circle-button {
   border: none;
   border-radius: 50%;
-  width: var(--button-size); /* Use CSS variable or direct binding */
-  height: var(--button-size); /* Use CSS variable or direct binding */
+  width: 350px; /* Use CSS variable or direct binding */
+  height: 350px; /* Use CSS variable or direct binding */
   color: white;
   font-size: 120px;
   cursor: pointer;
@@ -69,6 +70,18 @@ export default {
 
 .circle-button:hover {
   transform: translateY(var(--yOffset)) scale(1.1); /* Use the variable on hover */
+}
+
+@media (max-width: 1000px) { /* Adjust the max-width as needed for your design */
+  .circle-button {
+    border: none;
+    border-radius: 50%;
+    width: var(--button-size); /* Use CSS variable or direct binding */
+    height: var(--button-size);/* Use CSS variable or direct binding */
+    margin: -100px; /* Adjust margins to fit more elements on the screen */
+    /* Additional adjustments */
+    font-size: 50px;
+  }
 }
 
 
