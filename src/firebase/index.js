@@ -1,6 +1,6 @@
 // src/firebase/index.js
 import { initializeApp } from "firebase/app";
-import firebaseConfig from "./firebaseConfig.js";
+import firebaseConfig from "./firebaseConfig";
 
 const app = initializeApp(firebaseConfig);
 
