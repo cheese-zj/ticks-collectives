@@ -33,6 +33,7 @@ import CylinderComp from './components/CylinderComp.vue';
 import { signInWithGoogle} from './firebase/index.js';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import profilePic from '@/assets/logo.png';
+import { ElMessage, ElMessageBox, Action } from 'element-plus';
 
 export default {
   name: 'App',
@@ -88,7 +89,7 @@ export default {
     },
     openSettings() {
       console.log('Settings opened');
-      
+
     }
   }
 }
@@ -184,7 +185,7 @@ export default {
   cursor: pointer;
   z-index: 1011;
   font-size: 30px;
-  background-color: lightblue;
+  background-color: darkcyan;
   border: 2px solid white;
   outline: none;
   border-radius: 50%;

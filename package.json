@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "element-plus": "^2.5.5",
     "eslint": "^8.56.0",
     "firebase": "^10.8.0",
     "vue": "^3.2.13"
