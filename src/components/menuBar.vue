@@ -30,27 +30,26 @@
   </el-menu>
 </template>
 
-<script>
-// 在这里定义组件
-export default {
-  // 组件名，可选，但推荐为组件提供一个名称
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+
+export default defineComponent({
   name: 'menuBar',
+  setup() {
+    const activeIndex = ref('1');
+    const handleSelect = (key: string, keyPath: string[]) => {
+      console.log(key, keyPath);
+    };
 
-  // 组件的数据
-  data() {
     return {
-      message: 'Hello, Vue!'
-    }
+      activeIndex,
+      handleSelect,
+    };
   },
-
-  // 方法等其他组件选项
-  methods: {
-    // 定义组件方法
-  }
-}
+});
 </script>
 
-<style>
+<style scoped>
 .flex-grow {
   flex-grow: 1;
 }
