@@ -4,6 +4,7 @@
     <div class="profile-picture"
       :style="{ backgroundImage: `url(${profilePicUrl})`, }"
       @click="handleProfilePictureClick"></div>
+      <button @click="openSettings" class="settings-button">⚙️</button>
     <div class="button-container">
       <circle-button
         v-for="(button, index) in buttons"
@@ -84,8 +85,11 @@ export default {
       }).catch((error) => {
         console.error("Error signing in with Google:", error);
       });
+    },
+    openSettings() {
+      console.log('Settings opened');
+      
     }
-    
   }
 }
 </script>
@@ -150,8 +154,8 @@ export default {
   position: fixed;
   top: 0;
   right: 0;
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   background-color: grey;
   border-radius: 0 0 0 200px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
@@ -160,10 +164,10 @@ export default {
 
 .profile-picture {
   position: fixed;
-  top: 30px;
-  right: 80px;
-  width: 120px;
-  height: 120px;
+  top: 20px;
+  right: 60px;
+  width: 100px;
+  height: 100px;
   background-color: white;
   background-position: center;
   background-size: cover;
@@ -173,4 +177,18 @@ export default {
   z-index: 1010;
 }
 
+.settings-button {
+  position: fixed;
+  top: 20px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1011;
+  font-size: 30px;
+  background-color: lightblue;
+  border: 2px solid white;
+  outline: none;
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+
+}
 </style>
