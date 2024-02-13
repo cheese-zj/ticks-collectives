@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <div class="menu-bar">
+      <menuBar />
+    </div>
     <div class="quarter-circle"></div>
     <div class="profile-picture"
       :style="{ backgroundImage: `url(${profilePicUrl})`, }"
@@ -34,7 +37,7 @@ import menuBar from './components/menuBar.vue';
 import { signInWithGoogle} from './firebase/index.js';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import profilePic from '@/assets/logo.png';
-import { ElMessage, ElMessageBox, Action } from 'element-plus';
+//import { ElMessage, ElMessageBox, Action } from 'element-plus';
 
 
 export default {
@@ -42,6 +45,7 @@ export default {
   components: {
     CircleButton,
     CylinderComp,
+    menuBar,
   },
   data() {
     return {
