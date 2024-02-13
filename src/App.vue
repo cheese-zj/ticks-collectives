@@ -39,16 +39,6 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import profilePic from '@/assets/logo.png';
 //import { ElMessage, ElMessageBox, Action } from 'element-plus';
 
-import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
-import App from './App.vue'
-
-const app = createApp(App)
-
-app.use(ElementPlus)
-app.mount('#app')
-
 import menuBar from './components/menuBar.vue';
 
 
