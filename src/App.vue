@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div class="quarter-circle"></div>
-    <div class="profile-picture" :style="{ backgroundImage: `url(${profilePicUrl})` }"></div>
+    <div class="profile-picture"
+      :style="{ backgroundImage: `url(${profilePicUrl})`, }"
+      @click="handleProfilePictureClick"></div>
     <div class="button-container">
       <circle-button
         v-for="(button, index) in buttons"
@@ -27,6 +29,8 @@
 <script>
 import CircleButton from './components/CircleButton.vue';
 import CylinderComp from './components/CylinderComp.vue';
+import { signInWithGoogle} from './firebase/index.js';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import profilePic from '@/assets/logo.png';
 
 export default {
@@ -48,10 +52,40 @@ export default {
       windowHeight: window.innerHeight,
     };
   },
+  created() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, update the profile picture URL
+        this.profilePicUrl = user.photoURL || this.profilePicUrl; // Use user.photoURL or keep the default
+      }
+    });
+  },
   methods: {
     buttonClicked(index) {
       this.buttons[index].height += 20;
+    },
+    handleProfilePictureClick() {
+      signInWithGoogle().then((result) => {
+        // The signed-in user info.
+        const user = result.user;
+        // Here, you might want to do something with the user information or token, like updating the user's profile picture or displaying a welcome message.
+        console.log(user);
+        if (user.photoURL) {
+          // Update the profile picture URL with the user's photo URL
+          this.profilePicUrl = user.photoURL; // For Options API
+          // profilePicUrl.value = user.photoURL; // For Composition API, uncomment this line
+        }
+      }).catch((error) => {
+        // Handle errors here, such as showing an error message to the user.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(`Error ${errorCode}: ${errorMessage}`);
+      }).catch((error) => {
+        console.error("Error signing in with Google:", error);
+      });
     }
+    
   }
 }
 </script>
