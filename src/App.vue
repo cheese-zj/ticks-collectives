@@ -30,10 +30,12 @@
 <script>
 import CircleButton from './components/CircleButton.vue';
 import CylinderComp from './components/CylinderComp.vue';
+import menuBar from './components/menuBar.vue';
 import { signInWithGoogle} from './firebase/index.js';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import profilePic from '@/assets/logo.png';
 import { ElMessage, ElMessageBox, Action } from 'element-plus';
+
 
 export default {
   name: 'App',
