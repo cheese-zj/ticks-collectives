@@ -159,7 +159,7 @@ export default {
   width: 100px;
 }
 
-.quarter-circle {
+/* .quarter-circle {
   position: fixed;
   top: 0;
   right: 0;
@@ -169,12 +169,12 @@ export default {
   border-radius: 0 0 0 200px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   z-index: 1000;
-}
+} */
 
 .profile-picture {
   position: fixed;
-  top: 20px;
-  right: 60px;
+  top: 80px;
+  right: 25px;
   width: 100px;
   height: 100px;
   background-color: white;
@@ -188,7 +188,7 @@ export default {
 
 .settings-button {
   position: fixed;
-  top: 20px;
+  top: 75px;
   right: 10px;
   cursor: pointer;
   z-index: 1011;
