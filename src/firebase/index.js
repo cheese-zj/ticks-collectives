@@ -1,6 +1,7 @@
 // src/firebase/index.js
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBTv1KdD7nUn8fbVnTe9WUJWDoaYvrtntM",
@@ -16,6 +17,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 auth.languageCode = 'it';
 
+const db = getFirestore(app);
 
 const provider = new GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -45,3 +47,4 @@ onAuthStateChanged(auth, (user) => {
 });
 
 export default app;
+export { auth, db, provider };

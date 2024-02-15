@@ -36,12 +36,13 @@
 import CircleButton from './components/CircleButton.vue';
 import CylinderComp from './components/CylinderComp.vue';
 
-import { signInWithGoogle} from './firebase/index.js';
+import { signInWithGoogle, db } from './firebase/index.js';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+
 
 import profilePic from '@/assets/empty_user.png';
 //import { ElMessage, ElMessageBox, Action } from 'element-plus';
-
 import menuBar from './components/menuBar.vue';
 
 
@@ -105,18 +106,28 @@ export default {
 
     },
     logoutUser() {
-            const auth = getAuth();
-            console.log("Logging out user, id:" + this.currentUser.uid);
-            signOut(auth).then(() => {
-                // Sign-out successful.
-                console.log("User signed out successfully");
-                this.profilePicUrl = profilePic;
-                this.currentUser = null;
-            }).catch((error) => {
-                // An error happened.
-                console.error("Sign out error", error);
-            });
-        }
+      const auth = getAuth();
+      console.log("Logging out user, id:" + this.currentUser.uid);
+      signOut(auth).then(() => {
+          // Sign-out successful.
+          console.log("User signed out successfully");
+          this.profilePicUrl = profilePic;
+          this.currentUser = null;
+      }).catch((error) => {
+          // An error happened.
+          console.error("Sign out error", error);
+      });
+    },
+    saveUserData() {
+      try {
+        const docRef = addDoc(collection(db, "users"), {
+          
+        });
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    }
   }
 }
 </script>
