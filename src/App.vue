@@ -7,7 +7,9 @@
     <div class="profile-picture"
       :style="{ backgroundImage: `url(${profilePicUrl})`, }"
       @click="handleProfilePictureClick"></div>
+      
       <button @click="openSettings" class="settings-button">⚙️</button>
+      <button @click="logoutUser" class="logout-button">🚪</button>
     <div class="button-container">
       <circle-button
         v-for="(button, index) in buttons"
@@ -35,8 +37,8 @@ import CircleButton from './components/CircleButton.vue';
 import CylinderComp from './components/CylinderComp.vue';
 
 import { signInWithGoogle} from './firebase/index.js';
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import profilePic from '@/assets/logo.png';
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import profilePic from '@/assets/empty_user.png';
 //import { ElMessage, ElMessageBox, Action } from 'element-plus';
 
 import menuBar from './components/menuBar.vue';
@@ -80,7 +82,7 @@ export default {
         // The signed-in user info.
         const user = result.user;
         // Here, you might want to do something with the user information or token, like updating the user's profile picture or displaying a welcome message.
-        console.log(user);
+        
         if (user.photoURL) {
           // Update the profile picture URL with the user's photo URL
           this.profilePicUrl = user.photoURL; // For Options API
@@ -98,7 +100,18 @@ export default {
     openSettings() {
       console.log('Settings opened');
 
-    }
+    },
+    logoutUser() {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                console.log("User signed out successfully");
+                this.profilePicUrl = profilePic;
+            }).catch((error) => {
+                // An error happened.
+                console.error("Sign out error", error);
+            });
+        }
   }
 }
 </script>
@@ -192,13 +205,30 @@ export default {
   right: 10px;
   cursor: pointer;
   z-index: 1011;
-  font-size: 30px;
-  background-color: darkcyan;
+  font-size: 23px;
+  background-color: rgba(152, 207, 41, 0.711);
   border: 2px solid white;
   outline: none;
   border-radius: 50%;
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  width:40px;
+  height:40px;
+}
 
+.logout-button {
+  position: fixed;
+  top: 145px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1011;
+  font-size: 20px;
+  background-color: rgba(70, 220, 190, 0.791);
+  border: 2px solid white;
+  outline: none;
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  width:40px;
+  height:40px;
 }
 
 .menu-bar {
