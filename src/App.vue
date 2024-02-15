@@ -38,6 +38,7 @@ import CylinderComp from './components/CylinderComp.vue';
 
 import { signInWithGoogle} from './firebase/index.js';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
 import profilePic from '@/assets/empty_user.png';
 //import { ElMessage, ElMessageBox, Action } from 'element-plus';
 
@@ -110,6 +111,7 @@ export default {
                 // Sign-out successful.
                 console.log("User signed out successfully");
                 this.profilePicUrl = profilePic;
+                this.currentUser = null;
             }).catch((error) => {
                 // An error happened.
                 console.error("Sign out error", error);

@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
 
-const app = initializeApp({
+const firebaseConfig = {
     apiKey: "AIzaSyBTv1KdD7nUn8fbVnTe9WUJWDoaYvrtntM",
     authDomain: "ticks-collectives-s.firebaseapp.com",
     projectId: "ticks-collectives-s",
@@ -10,7 +10,9 @@ const app = initializeApp({
     messagingSenderId: "477383898984",
     appId: "1:477383898984:web:5e10923d7ecd20a13208dd",
     measurementId: "G-EH53ZXYRVM"
-  });
+};
+
+const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 auth.languageCode = 'it';
 
