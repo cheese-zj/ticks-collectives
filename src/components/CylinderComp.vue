@@ -34,7 +34,7 @@ export default {
 }
 
 .cylinder-top {
-    width: 100px; /* Adjust based on your design */
+    width: 60px; /* Adjust based on your design */
     height: 10px; /* Represents the top circle of the cylinder */
     border-radius: 30px 30px 0 0;
     background-color: #3498db; /* Default color, will be overridden by prop */
@@ -42,7 +42,7 @@ export default {
 }
 
 .cylinder-body {
-    width: 100px; /* Match the top circle width */
+    width: 60px; /* Match the top circle width */
     background-color: #3498db; /* Default color, will be overridden by prop */
     position: relative;
 }
@@ -58,9 +58,9 @@ export default {
     background-color: inherit; /* Inherits the body color */
 }
 .border-container {
-    width: 100px; /* Slightly larger to accommodate the border and gap */
-    height: 210px; /* Adjust based on your cylinder height + gap */
-    padding: 10px; /* Creates the gap between the border and the cylinder */
+    width: 60px; /* Slightly larger to accommodate the border and gap */
+    height: 110px; /* Adjust based on your cylinder height + gap */
+    padding: 9.5px; /* Creates the gap between the border and the cylinder */
     border: 5px solid grey; /* Grey border around the cylinder */
     border-radius: 20px; /* Optional: for rounded corners */
     display: flex;

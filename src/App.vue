@@ -53,11 +53,12 @@ export default {
   },
   data() {
     return {
+      currentUser: null,
       buttons: [
-        { color: '#3498db', text: '📚', size: `${380 * window.innerWidth / 1300}px`, yOffset: '-20px', height: 20 },
-        { color: '#e74c3c', text: '🏋️', size: `${300 * window.innerWidth / 1300}px`, yOffset: '100px', height: 20 },
-        { color: '#2ecc71', text: '🧘', size: `${350 * window.innerWidth / 1300}px`, yOffset: '-30px', height: 20 },
-        { color: '#ffe852', text: '🥣', size: `${335 * window.innerWidth / 1300}px`, yOffset: '50px', height: 20 }
+        { color: '#3498db', text: '📚', size: `${380 * window.innerWidth / 1300}px`, yOffset: '-20px', height: 0 },
+        { color: '#e74c3c', text: '🏋️', size: `${300 * window.innerWidth / 1300}px`, yOffset: '100px', height: 0 },
+        { color: '#2ecc71', text: '🧘', size: `${350 * window.innerWidth / 1300}px`, yOffset: '-30px', height: 0 },
+        { color: '#ffe852', text: '🥣', size: `${335 * window.innerWidth / 1300}px`, yOffset: '50px', height: 0 }
       ],
       profilePicUrl: profilePic,
       windowWidth: window.innerWidth,
@@ -75,14 +76,15 @@ export default {
   },
   methods: {
     buttonClicked(index) {
-      this.buttons[index].height += 20;
+      this.buttons[index].height += 10;
     },
     handleProfilePictureClick() {
       signInWithGoogle().then((result) => {
         // The signed-in user info.
         const user = result.user;
-        // Here, you might want to do something with the user information or token, like updating the user's profile picture or displaying a welcome message.
-        
+        this.currentUser = user;
+        // const token = result.credential.accessToken;
+        console.log("User ID:", user.uid);
         if (user.photoURL) {
           // Update the profile picture URL with the user's photo URL
           this.profilePicUrl = user.photoURL; // For Options API
@@ -103,6 +105,7 @@ export default {
     },
     logoutUser() {
             const auth = getAuth();
+            console.log("Logging out user, id:" + this.currentUser.uid);
             signOut(auth).then(() => {
                 // Sign-out successful.
                 console.log("User signed out successfully");
