@@ -38,7 +38,7 @@ import CylinderComp from './components/CylinderComp.vue';
 
 import { signInWithGoogle, db } from './firebase/index.js';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 
 
 import profilePic from '@/assets/empty_user.png';
@@ -56,6 +56,7 @@ export default {
   data() {
     return {
       currentUser: null,
+      userCyHeights: [0, 0, 0, 0],
       buttons: [
         { color: '#3498db', text: '📚', size: `${380 * window.innerWidth / 1300}px`, yOffset: '-20px', height: 0 },
         { color: '#e74c3c', text: '🏋️', size: `${300 * window.innerWidth / 1300}px`, yOffset: '100px', height: 0 },
@@ -73,12 +74,59 @@ export default {
       if (user) {
         // User is signed in, update the profile picture URL
         this.profilePicUrl = user.photoURL || this.profilePicUrl; // Use user.photoURL or keep the default
+        this.currentUser = user; // Set the current user
+        this.fetchDataAndUpdateHeights(); // Fetch data when the user is signed in
       }
     });
   },
   methods: {
+    async saveUserProgressData() {
+      try {
+        const addr = 'userData/' + this.currentUser.uid + '/progress/currentProgress'
+        const docRef = doc(db, addr);
+        await setDoc(docRef, {
+          cyHeights: [
+            this.buttons[0].height,
+            this.buttons[1].height,
+            this.buttons[2].height,
+            this.buttons[3].height
+          ]
+        });
+        console.log("Document written", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    },
+    async fetchProgressData() {
+      try {
+        const docRef = doc(db, 'userData/' + this.currentUser.uid + '/progress/currentProgress');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists) {
+          console.log("Document data:", docSnap.data());
+          this.userCyHeights = docSnap.data().cyHeights;
+          console.log("User heights: ", this.userCyHeights);
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    },
+    async fetchDataAndUpdateHeights() {
+      await this.fetchProgressData(); // Wait until data is fetched
+      console.log(this.userCyHeights); // Now this should log the updated data
+      this.updateButtonHeights(); // Call a method that updates the button heights
+    },
+    updateButtonHeights() {
+      for (let i = 0; i < this.buttons.length; i++) {
+        this.buttons[i].height += this.userCyHeights[i] || 0;
+      }
+    },
+
     buttonClicked(index) {
       this.buttons[index].height += 10;
+      this.buttons[index].height %= 110;
+      this.saveUserProgressData();
     },
     handleProfilePictureClick() {
       signInWithGoogle().then((result) => {
@@ -117,18 +165,12 @@ export default {
           // An error happened.
           console.error("Sign out error", error);
       });
-    },
-    saveUserData() {
-      try {
-        const docRef = addDoc(collection(db, "users"), {
-          
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
     }
-  }
+  },
+  // mounted() {
+  //   this.onAuthStateChanged();
+  //   this.fetchData(); // Fetch data when the component is mounted
+  // }
 }
 </script>
 

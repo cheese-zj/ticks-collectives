@@ -40,7 +40,7 @@ export const signInWithGoogle = () => {
 
 onAuthStateChanged(auth, (user) => {
     if (user != null) {
-        console.log('Logged in');
+        console.log('Logged in, id: ', user.uid);
     } else {
         console.log('Logged out');
     }
