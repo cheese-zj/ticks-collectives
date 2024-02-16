@@ -104,7 +104,6 @@ export default {
         if (docSnap.exists) {
           console.log("Document data:", docSnap.data());
           this.userCyHeights = docSnap.data().cyHeights;
-          console.log("User heights: ", this.userCyHeights);
         } else {
           console.log("No such document!");
         }
@@ -120,6 +119,11 @@ export default {
     updateButtonHeights() {
       for (let i = 0; i < this.buttons.length; i++) {
         this.buttons[i].height += this.userCyHeights[i] || 0;
+      }
+    },
+    resetButtonHeights() {
+      for (let i = 0; i < this.buttons.length; i++) {
+        this.buttons[i].height = 0;
       }
     },
 
@@ -161,6 +165,7 @@ export default {
           console.log("User signed out successfully");
           this.profilePicUrl = profilePic;
           this.currentUser = null;
+          this.resetButtonHeights();
       }).catch((error) => {
           // An error happened.
           console.error("Sign out error", error);
