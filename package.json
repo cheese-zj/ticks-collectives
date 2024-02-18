@@ -14,7 +14,7 @@
     "firebase": "^10.8.0",
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.0.1",
-    "vue": "^3.2.13",
+    "vue": "^3.4.19",
     "vue-class-component": "^8.0.0-0"
   },
   "devDependencies": {

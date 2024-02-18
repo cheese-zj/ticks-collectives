@@ -10,7 +10,7 @@
   <script> 
   //import logoImage from '@/assets/brush_blue.png';
     import { db } from '../firebase/index.js';
-    import { doc, setDoc } from "firebase/firestore";
+    import { doc, setDoc, getDoc } from "firebase/firestore";
     export default {
         name: 'RewardsStorage',
         // Add your script here if needed
@@ -49,6 +49,25 @@
                     console.log("Items updated successfully");
                 } catch (error) {
                     console.error("Error updating items: ", error);
+                }
+            },
+            async fetchItems(uid) {
+                const addr = 'userData/' + uid + '/collection/rewards';
+                const userDocRef = doc(db, addr);
+                try {
+                    const docSnap = await getDoc(userDocRef);
+                    if (docSnap.exists()) {
+                        console.log("Document data:", docSnap.data());
+                        // Assuming the stored structure mirrors the local 'items' structure
+                        this.items = docSnap.data().items || [];
+                    } else {
+                        console.log("No such document!");
+                        // Handle the case where there is no existing data
+                        this.items = []; // Reset or initialize as needed
+                    }
+                } catch (error) {
+                    console.error("Error fetching items: ", error);
+                    // Handle any errors, such as permission issues or network errors
                 }
             }
         }
@@ -97,7 +116,7 @@
 
 @media (min-width: 1440px) { /* Extra large devices (large desktops, 1440px and up) */
   .rewards-storage {
-    grid-template-columns: repeat(6, 1fr); /* Adjust to six columns */
+    grid-template-columns: repeat(5, 1fr); /* Adjust to six columns */
   }
 }
 </style>

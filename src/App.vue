@@ -30,6 +30,7 @@
       />
     </div>
     <RewardsStorage ref="rewardsStorage" />
+    
   </div>
 </template>
 
@@ -87,6 +88,7 @@ export default {
         this.profilePicUrl = user.photoURL || this.profilePicUrl; // Use user.photoURL or keep the default
         this.currentUser = user; // Set the current user
         this.fetchDataAndUpdateHeights(); // Fetch data when the user is signed in
+        this.$refs.rewardsStorage.fetchItems(this.currentUser.uid); // Fetch the user's items
       }
     });
   },
@@ -148,6 +150,7 @@ export default {
     collectionIncrement() {
       console.log('Collection incremented test');
       alert('Battery fully charged! Collection increased! Check out your inventory!');
+      
       this.$refs.rewardsStorage.addItem({ imageUrl: brush_blue, text: '🌟' }, this.currentUser.uid);
     },
     handleProfilePictureClick() {
@@ -183,16 +186,13 @@ export default {
           this.profilePicUrl = profilePic;
           this.currentUser = null;
           this.resetButtonHeights();
+          this.$refs.rewardsStorage.items = [];
       }).catch((error) => {
           // An error happened.
           console.error("Sign out error", error);
       });
     }
   },
-  // mounted() {
-  //   this.onAuthStateChanged();
-  //   this.fetchData(); // Fetch data when the component is mounted
-  // }
 }
 </script>
 
