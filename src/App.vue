@@ -7,7 +7,7 @@
     <div class="profile-picture"
       :style="{ backgroundImage: `url(${profilePicUrl})`, }"
       @click="handleProfilePictureClick"></div>
-      
+
       <button @click="openSettings" class="settings-button">⚙️</button>
       <button @click="logoutUser" class="logout-button">🚪</button>
     <div class="button-container">
@@ -29,12 +29,15 @@
         :height="button.height"
       />
     </div>
+    <RewardsStorage />
   </div>
 </template>
 
 <script>
 import CircleButton from './components/CircleButton.vue';
 import CylinderComp from './components/CylinderComp.vue';
+import menuBar from './components/menuBar.vue';
+import RewardsStorage from './components/RewardsStorage.vue';
 
 import { signInWithGoogle, db } from './firebase/index.js';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
@@ -43,7 +46,7 @@ import { setDoc, doc, getDoc } from "firebase/firestore";
 
 import profilePic from '@/assets/empty_user.png';
 //import { ElMessage, ElMessageBox, Action } from 'element-plus';
-import menuBar from './components/menuBar.vue';
+
 
 
 export default {
@@ -52,16 +55,17 @@ export default {
     CircleButton,
     CylinderComp,
     menuBar,
+    RewardsStorage,
   },
   data() {
     return {
       currentUser: null,
       userCyHeights: [0, 0, 0, 0],
       buttons: [
-        { color: '#3498db', text: '📚', size: `${380 * window.innerWidth / 1300}px`, yOffset: '-20px', height: 0 },
-        { color: '#e74c3c', text: '🏋️', size: `${300 * window.innerWidth / 1300}px`, yOffset: '100px', height: 0 },
-        { color: '#2ecc71', text: '🧘', size: `${350 * window.innerWidth / 1300}px`, yOffset: '-30px', height: 0 },
-        { color: '#ffe852', text: '🥣', size: `${335 * window.innerWidth / 1300}px`, yOffset: '50px', height: 0 }
+        { color: '#3498db', text: '📚', size: `${300 * window.innerWidth / 1400}px`, yOffset: '-20px', height: 0 },
+        { color: '#e74c3c', text: '🏃', size: `${300 * window.innerWidth / 1400}px`, yOffset: '80px', height: 0 },
+        { color: '#2ecc71', text: '🧘', size: `${350 * window.innerWidth / 1400}px`, yOffset: '-30px', height: 0 },
+        { color: '#ffe852', text: '🍊', size: `${290 * window.innerWidth / 1400}px`, yOffset: '50px', height: 0 }
       ],
       profilePicUrl: profilePic,
       windowWidth: window.innerWidth,
@@ -296,5 +300,38 @@ export default {
 
 .menu-bar {
   width: 100%;
+}
+
+.RewardStorage {
+  display: grid;
+  position: relative;
+  
+}
+
+.RewardStorage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  background-color: gray;
+  border-radius: 30px;
+  background-size: cover; /* Cover the entire area of the box */
+  background-position: center; /* Center the background image */
+  position: relative; /* Needed for absolute positioning of text */
+}
+
+.item-text {
+  position: absolute;
+  bottom: 45px; /* Position text at the bottom of the box */
+  left: 52px; /* Position text from the left of the box */
+  color: white; /* Text color */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+  padding: 5px;
+  border-radius: 10px; /* Optional: for rounded text background */
+  font-size: 35px; /* Adjust based on your design */
 }
 </style>

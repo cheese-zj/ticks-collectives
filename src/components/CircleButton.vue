@@ -62,7 +62,7 @@ export default {
   width: 350px; /* Use CSS variable or direct binding */
   height: 350px; /* Use CSS variable or direct binding */
   color: white;
-  font-size: 120px;
+  font-size: 95px;
   cursor: pointer;
   outline: none;
 
