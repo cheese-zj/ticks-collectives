@@ -1,34 +1,58 @@
 <template>
     <div class="rewards-storage">
-      <div class = "box" v-for = "(item, index) in items" :key = "index"
-        :style = "{ backgroundImage: `url(${item.imageUrl})` }">
-        <div class = "item-text"> {{ item.text }} </div>
-      </div>
+    <div class="box" v-for="index in totalBoxes" :key="index"
+         :style="itemStyle(index)">
+      <div class="item-text">{{ itemText(index) }}</div>
     </div>
+  </div>
   </template>
   
-  <script>
-  import logoImage from '@/assets/brush_blue.png';
-
-  export default {
-    name: 'RewardsStorage',
-
-    // Add your script here if needed
-    data() {
-      return {
-        // Example items array
-        items: [
-          { imageUrl: logoImage, text: '🌟' },
-          { imageUrl: logoImage, text: '🌟' },
-          { imageUrl: logoImage, text: '🌟' },
-          { imageUrl: logoImage, text: '🌟' },
-          { imageUrl: logoImage, text: '💕' },
-          { imageUrl: logoImage, text: '💕' },
-          { imageUrl: logoImage, text: '💕' },
-        ],
-      };
-    },
-  }
+  <script> 
+  //import logoImage from '@/assets/brush_blue.png';
+    import { db } from '../firebase/index.js';
+    import { doc, setDoc } from "firebase/firestore";
+    export default {
+        name: 'RewardsStorage',
+        // Add your script here if needed
+        data() {
+            return {
+                // Example items array
+                items: [
+                ],
+            };
+        },
+        computed: {
+            totalBoxes() {
+                // Always show at least the minimum number of boxes
+                return (Math.floor(this.items.length / 5)+1)*5;
+            }
+        },
+        methods: {
+            itemStyle(index) {
+                const item = this.items[index - 1]; // Arrays are zero-indexed
+                return item ? { backgroundImage: `url(${item.imageUrl})` } : {};
+            },
+            itemText(index) {
+                const item = this.items[index - 1]; // Arrays are zero-indexed
+                return item ? item.text : '';
+            },
+            async addItem(newItem, uid) {
+                // Add the new item to the local items array
+                this.items.push(newItem);
+                // Save the updated items array to the current user's document
+                try {
+                    const addr = 'userData/' + uid + '/collection/rewards';
+                    const userDocRef = doc(db, addr);
+                await setDoc(userDocRef, {
+                    items: this.items,
+                });
+                    console.log("Items updated successfully");
+                } catch (error) {
+                    console.error("Error updating items: ", error);
+                }
+            }
+        }
+    }
   </script>
   
   <style scoped>
@@ -39,6 +63,7 @@
   }
   
   .box {
+    list-style-type: none;
     width: 150px; /* Size of boxes */
     height: 150px; /* Size of boxes */
     background-color: lightgray; /* Color of boxes */

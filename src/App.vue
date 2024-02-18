@@ -29,22 +29,29 @@
         :height="button.height"
       />
     </div>
-    <RewardsStorage />
+    <RewardsStorage ref="rewardsStorage" />
   </div>
 </template>
 
+
 <script>
+
+// Import the components from this project
 import CircleButton from './components/CircleButton.vue';
 import CylinderComp from './components/CylinderComp.vue';
 import menuBar from './components/menuBar.vue';
 import RewardsStorage from './components/RewardsStorage.vue';
 
+// Firebase stuffs importations
 import { signInWithGoogle, db } from './firebase/index.js';
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 
+//Element Plus importations
 
+// Temporary Usage only
 import profilePic from '@/assets/empty_user.png';
+import brush_blue from '@/assets/brush_blue.png';
 //import { ElMessage, ElMessageBox, Action } from 'element-plus';
 
 
@@ -74,7 +81,7 @@ export default {
   },
   created() {
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+      onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, update the profile picture URL
         this.profilePicUrl = user.photoURL || this.profilePicUrl; // Use user.photoURL or keep the default
@@ -86,7 +93,7 @@ export default {
   methods: {
     async saveUserProgressData() {
       try {
-        const addr = 'userData/' + this.currentUser.uid + '/progress/currentProgress'
+        const addr = 'userData/' + this.currentUser.uid + '/progress/currentProgress';
         const docRef = doc(db, addr);
         await setDoc(docRef, {
           cyHeights: [
@@ -130,11 +137,18 @@ export default {
         this.buttons[i].height = 0;
       }
     },
-
     buttonClicked(index) {
       this.buttons[index].height += 10;
+      if (this.buttons[index].height >= 110) {
+        this.collectionIncrement();
+      }
       this.buttons[index].height %= 110;
       this.saveUserProgressData();
+    },
+    collectionIncrement() {
+      console.log('Collection incremented test');
+      alert('Battery fully charged! Collection increased! Check out your inventory!');
+      this.$refs.rewardsStorage.addItem({ imageUrl: brush_blue, text: '🌟' }, this.currentUser.uid);
     },
     handleProfilePictureClick() {
       signInWithGoogle().then((result) => {
@@ -159,7 +173,6 @@ export default {
     },
     openSettings() {
       console.log('Settings opened');
-
     },
     logoutUser() {
       const auth = getAuth();
@@ -321,6 +334,7 @@ export default {
   border-radius: 30px;
   background-size: cover; /* Cover the entire area of the box */
   background-position: center; /* Center the background image */
+  background-blend-mode:darken;
   position: relative; /* Needed for absolute positioning of text */
 }
 
@@ -329,9 +343,9 @@ export default {
   bottom: 45px; /* Position text at the bottom of the box */
   left: 52px; /* Position text from the left of the box */
   color: white; /* Text color */
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better readability */
+  background-color: rgba(0, 0, 0, 0.0); /* Semi-transparent background for better readability */
   padding: 5px;
-  border-radius: 10px; /* Optional: for rounded text background */
+  border-radius: 50px; /* Optional: for rounded text background */
   font-size: 35px; /* Adjust based on your design */
 }
 </style>
