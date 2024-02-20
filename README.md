@@ -21,7 +21,7 @@ Log in with google account to have a try on the simple progress tracking functio
 
 # Ticks, Collectives ... & more. The Story
 https://docs.google.com/presentation/d/1zoYlpvNGU18KJJVzgu8go_9ewhd_2z_XPKJujTNPvro/edit?usp=sharing (For demonstration usage, having the same content, it looks nicer)
-## **The main focus:
+## The main focus:
 
 Generated from real personal experiences. Psychological pressure related problems including panic attacks and being extremely unstable with focusing are the largest issues I’m currently suffering from. And these are also suffering by many others, in many different negative forms.
 
