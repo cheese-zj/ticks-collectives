@@ -332,7 +332,7 @@ export default {
   height: 150px;
   background-color: gray;
   border-radius: 30px;
-  background-size: cover; /* Cover the entire area of the box */
+  background-size: cover; 
   background-position: center; /* Center the background image */
   background-blend-mode:darken;
   position: relative; /* Needed for absolute positioning of text */
@@ -340,12 +340,12 @@ export default {
 
 .item-text {
   position: absolute;
-  bottom: 45px; /* Position text at the bottom of the box */
-  left: 52px; /* Position text from the left of the box */
+  bottom: 45px; 
+  left: 52px;
   color: white; /* Text color */
-  background-color: rgba(0, 0, 0, 0.0); /* Semi-transparent background for better readability */
+  background-color: rgba(0, 0, 0, 0.0); 
   padding: 5px;
-  border-radius: 50px; /* Optional: for rounded text background */
-  font-size: 35px; /* Adjust based on your design */
+  border-radius: 50px;
+  font-size: 35px; 
 }
 </style>

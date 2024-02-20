@@ -13,10 +13,9 @@
     import { doc, setDoc, getDoc } from "firebase/firestore";
     export default {
         name: 'RewardsStorage',
-        // Add your script here if needed
         data() {
             return {
-                // Example items array
+                // sample items array
                 items: [
                 ],
             };
@@ -33,7 +32,7 @@
                 return item ? { backgroundImage: `url(${item.imageUrl})` } : {};
             },
             itemText(index) {
-                const item = this.items[index - 1]; // Arrays are zero-indexed
+                const item = this.items[index - 1];
                 return item ? item.text : '';
             },
             async addItem(newItem, uid) {
@@ -84,7 +83,7 @@
   .box {
     list-style-type: none;
     width: 150px; /* Size of boxes */
-    height: 150px; /* Size of boxes */
+    height: 150px;
     background-color: lightgray; /* Color of boxes */
     border-radius: 100px; /* Optional: for rounded corners */
   }
@@ -120,4 +119,3 @@
   }
 }
 </style>
-  

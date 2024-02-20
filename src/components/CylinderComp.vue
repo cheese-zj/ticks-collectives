@@ -34,7 +34,7 @@ export default {
 }
 
 .cylinder-top {
-    width: 60px; /* Adjust based on your design */
+    width: 60px; 
     height: 10px; /* Represents the top circle of the cylinder */
     border-radius: 30px 30px 0 0;
     background-color: #3498db; /* Default color, will be overridden by prop */
@@ -59,10 +59,10 @@ export default {
 }
 .border-container {
     width: 60px; /* Slightly larger to accommodate the border and gap */
-    height: 110px; /* Adjust based on your cylinder height + gap */
+    height: 110px; 
     padding: 9.5px; /* Creates the gap between the border and the cylinder */
     border: 5px solid grey; /* Grey border around the cylinder */
-    border-radius: 20px; /* Optional: for rounded corners */
+    border-radius: 20px; /* Rounded corners */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +72,7 @@ export default {
 .cylinder-container::before {
   content: '';
   position: absolute;
-  top: -21.5px; /* Adjust based on the size of the notch */
+  top: -21.5px; 
   left: 50%;
   transform: translateX(-50%); /* Center the notch */
   width: 20px; /* Width of the notch */
