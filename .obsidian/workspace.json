@@ -147,5 +147,19 @@
     }
   },
   "active": "7edd70e4d988ca0a",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "firebase-debug.log",
+    "dist/index.html",
+    "dist/favicon.ico",
+    "dist/css/app.b28979b8.css",
+    "dist/css/chunk-vendors.72cf1f59.css",
+    "dist/css",
+    "dist/js/chunk-vendors.911ccc51.js.map",
+    "dist/js/chunk-vendors.911ccc51.js",
+    "dist/js/app.24fc2671.js.map",
+    "dist/js/app.24fc2671.js",
+    "dist/js",
+    "dist/img/brush_blue.2c6f8410.png",
+    "dist/img/empty_user.0f229c57.png"
+  ]
 }

@@ -57,4 +57,5 @@ So some discrete thoughts on this happens:
 ![[tcs1.png]]
 ![[tcs2.png]]
 ![[tcs3.png]]
-![[tcs4.png]]![[tcs5.png]]
+![[tcs4.png]]
+![[tcs5.png]]
