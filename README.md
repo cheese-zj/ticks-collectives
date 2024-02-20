@@ -54,8 +54,20 @@ So some discrete thoughts on this happens:
 - **Motor to help with building a vibration system to support interactions with users, and can help users to do breathing, mindfulness & multiple relaxing exercise by physical indications provided to users**
 - **Some interactions: e.g. reward collecting, recording progresses & breathing activity force users to put down other stuffs (holding multiple buttons at the same time) (p.s. alternative physical disability supports will be included). This is a reset on users' focus session and help with cut down up-stacking pressures**
 - **Picking it up is a part of distraction and putting it down and go back to what you want to be focused on is also a part of your distraction, this is what I really want to build after all, and all the ticks and rewards are contributing to building a relatively positive habit. I want this to be a crutch for people like me with some of those modern crisis**
+<<<<<<< HEAD
 ![[tcs1.png]]
 ![[tcs2.png]]
 ![[tcs3.png]]
 ![[tcs4.png]]
 ![[tcs5.png]]
+=======
+![tcs2](https://github.com/cheese-zj/ticks-collectives/assets/80019342/af71264e-de81-487a-9fa3-344de897d448)
+![tcs1](https://github.com/cheese-zj/ticks-collectives/assets/80019342/4944b8fb-ef10-46bf-8731-a8d5dd574d0a)
+
+![tcs5](https://github.com/cheese-zj/ticks-collectives/assets/80019342/402019d5-7677-4c61-a348-afbacbb307a2)
+![tcs4](https://github.com/cheese-zj/ticks-collectives/assets/80019342/68890d88-1b8f-4076-8b84-e2ab056148a3)
+
+![tcs3](https://github.com/cheese-zj/ticks-collectives/assets/80019342/4fa4cd70-882e-426a-a703-71df6ccdb17f)
+
+
+>>>>>>> 409450fe15b6e9c02cd849380fbe74c186accabf
