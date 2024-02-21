@@ -55,7 +55,7 @@ import profilePic from '@/assets/empty_user.png';
 import brush_blue from '@/assets/brush_blue.png';
 //import { ElMessage, ElMessageBox, Action } from 'element-plus';
 
-
+//renaming section
 
 export default {
   name: 'App',
@@ -349,3 +349,4 @@ export default {
   font-size: 35px; 
 }
 </style>
+
